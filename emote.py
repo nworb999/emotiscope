@@ -25,6 +25,7 @@ while True:
         
         result = DeepFace.analyze(face_roi, actions=['emotion'], enforce_detection=False)
 
+        # exporting this realtime
         emotion = result[0]['dominant_emotion']
 
         cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 0, 255), 2)
