@@ -1,0 +1,45 @@
+05/27/2024 00:31:08 - INFO - __main__ - ***** Running training *****
+05/27/2024 00:31:08 - INFO - __main__ -   Num examples = 27
+05/27/2024 00:31:08 - INFO - __main__ -   Num batches each epoch = 5
+05/27/2024 00:31:08 - INFO - __main__ -   Num Epochs = 200
+05/27/2024 00:31:08 - INFO - __main__ -   Instantaneous batch size per device = 3
+05/27/2024 00:31:08 - INFO - __main__ -   Total train batch size (w. parallel, distributed & accumulation) = 6
+05/27/2024 00:31:08 - INFO - __main__ -   Gradient Accumulation steps = 1
+05/27/2024 00:31:08 - INFO - __main__ -   Total optimization steps = 1000
+Steps:   0%|                                           | 0/1000 [00:00<?, ?it/s][rank0]: Traceback (most recent call last):
+[rank0]:   File "/home/emma/code/emotiscope/train_dreambooth_lora_sdxl_advanced.py", line 2446, in <module>
+[rank0]:     main(args)
+[rank0]:   File "/home/emma/code/emotiscope/train_dreambooth_lora_sdxl_advanced.py", line 1976, in main
+[rank0]:     model_input = vae.encode(pixel_values).latent_dist.sample()
+[rank0]:   File "/home/emma/code/emotiscope/moody-env/lib/python3.10/site-packages/diffusers/utils/accelerate_utils.py", line 46, in wrapper
+[rank0]:     return method(self, *args, **kwargs)
+[rank0]:   File "/home/emma/code/emotiscope/moody-env/lib/python3.10/site-packages/diffusers/models/autoencoders/autoencoder_kl.py", line 261, in encode
+[rank0]:     h = self.encoder(x)
+[rank0]:   File "/home/emma/code/emotiscope/moody-env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1532, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/home/emma/code/emotiscope/moody-env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1541, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/home/emma/code/emotiscope/moody-env/lib/python3.10/site-packages/diffusers/models/autoencoders/vae.py", line 172, in forward
+[rank0]:     sample = down_block(sample)
+[rank0]:   File "/home/emma/code/emotiscope/moody-env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1532, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/home/emma/code/emotiscope/moody-env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1541, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/home/emma/code/emotiscope/moody-env/lib/python3.10/site-packages/diffusers/models/unets/unet_2d_blocks.py", line 1474, in forward
+[rank0]:     hidden_states = resnet(hidden_states, temb=None)
+[rank0]:   File "/home/emma/code/emotiscope/moody-env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1532, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/home/emma/code/emotiscope/moody-env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1541, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/home/emma/code/emotiscope/moody-env/lib/python3.10/site-packages/diffusers/models/resnet.py", line 327, in forward
+[rank0]:     hidden_states = self.norm1(hidden_states)
+[rank0]:   File "/home/emma/code/emotiscope/moody-env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1532, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/home/emma/code/emotiscope/moody-env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1541, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/home/emma/code/emotiscope/moody-env/lib/python3.10/site-packages/torch/nn/modules/normalization.py", line 287, in forward
+[rank0]:     return F.group_norm(
+[rank0]:   File "/home/emma/code/emotiscope/moody-env/lib/python3.10/site-packages/torch/nn/functional.py", line 2588, in group_norm
+[rank0]:     return torch.group_norm(input, num_groups, weight, bias, eps, torch.backends.cudnn.enabled)
+[rank0]: torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 1.50 GiB. GPU
+Steps:   0%|                                           | 0/1000 [00:00<?, ?it/s]

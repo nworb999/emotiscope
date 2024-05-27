@@ -1,0 +1,45 @@
+05/27/2024 00:38:33 - INFO - __main__ - ***** Running training *****
+05/27/2024 00:38:33 - INFO - __main__ -   Num examples = 27
+05/27/2024 00:38:33 - INFO - __main__ -   Num batches each epoch = 14
+05/27/2024 00:38:33 - INFO - __main__ -   Num Epochs = 100
+05/27/2024 00:38:33 - INFO - __main__ -   Instantaneous batch size per device = 1
+05/27/2024 00:38:33 - INFO - __main__ -   Total train batch size (w. parallel, distributed & accumulation) = 6
+05/27/2024 00:38:33 - INFO - __main__ -   Gradient Accumulation steps = 3
+05/27/2024 00:38:33 - INFO - __main__ -   Total optimization steps = 500
+Steps:   0%|                                            | 0/500 [00:00<?, ?it/s]/home/emma/code/emotiscope/moody-env/lib/python3.10/site-packages/torch/nn/modules/conv.py:456: UserWarning: Plan failed with a cudnnException: CUDNN_BACKEND_EXECUTION_PLAN_DESCRIPTOR: cudnnFinalize Descriptor Failed cudnn_status: CUDNN_STATUS_NOT_SUPPORTED (Triggered internally at ../aten/src/ATen/native/cudnn/Conv_v8.cpp:919.)
+  return F.conv2d(input, weight, bias, self.stride,
+Steps:   0%|                         | 0/500 [00:02<?, ?it/s, loss=0.0217, lr=1]/home/emma/code/emotiscope/moody-env/lib/python3.10/site-packages/torch/nn/modules/conv.py:456: UserWarning: Plan failed with an OutOfMemoryError: CUDA out of memory. Tried to allocate 514.00 MiB. GPU  (Triggered internally at ../aten/src/ATen/native/cudnn/Conv_v8.cpp:924.)
+  return F.conv2d(input, weight, bias, self.stride,
+/home/emma/code/emotiscope/moody-env/lib/python3.10/site-packages/torch/nn/modules/conv.py:456: UserWarning: Plan failed with an OutOfMemoryError: CUDA out of memory. Tried to allocate 1.00 GiB. GPU  (Triggered internally at ../aten/src/ATen/native/cudnn/Conv_v8.cpp:924.)
+  return F.conv2d(input, weight, bias, self.stride,
+/home/emma/code/emotiscope/moody-env/lib/python3.10/site-packages/torch/nn/modules/conv.py:456: UserWarning: Plan failed with an OutOfMemoryError: CUDA out of memory. Tried to allocate 1.50 GiB. GPU  (Triggered internally at ../aten/src/ATen/native/cudnn/Conv_v8.cpp:924.)
+  return F.conv2d(input, weight, bias, self.stride,
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/home/emma/code/emotiscope/train_dreambooth_lora_sdxl_advanced.py", line 2446, in <module>
+[rank0]:     main(args)
+[rank0]:   File "/home/emma/code/emotiscope/train_dreambooth_lora_sdxl_advanced.py", line 1976, in main
+[rank0]:     model_input = vae.encode(pixel_values).latent_dist.sample()
+[rank0]:   File "/home/emma/code/emotiscope/moody-env/lib/python3.10/site-packages/diffusers/utils/accelerate_utils.py", line 46, in wrapper
+[rank0]:     return method(self, *args, **kwargs)
+[rank0]:   File "/home/emma/code/emotiscope/moody-env/lib/python3.10/site-packages/diffusers/models/autoencoders/autoencoder_kl.py", line 261, in encode
+[rank0]:     h = self.encoder(x)
+[rank0]:   File "/home/emma/code/emotiscope/moody-env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1532, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/home/emma/code/emotiscope/moody-env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1541, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/home/emma/code/emotiscope/moody-env/lib/python3.10/site-packages/diffusers/models/autoencoders/vae.py", line 172, in forward
+[rank0]:     sample = down_block(sample)
+[rank0]:   File "/home/emma/code/emotiscope/moody-env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1532, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/home/emma/code/emotiscope/moody-env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1541, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/home/emma/code/emotiscope/moody-env/lib/python3.10/site-packages/diffusers/models/unets/unet_2d_blocks.py", line 1474, in forward
+[rank0]:     hidden_states = resnet(hidden_states, temb=None)
+[rank0]:   File "/home/emma/code/emotiscope/moody-env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1532, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/home/emma/code/emotiscope/moody-env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1541, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/home/emma/code/emotiscope/moody-env/lib/python3.10/site-packages/diffusers/models/resnet.py", line 371, in forward
+[rank0]:     output_tensor = (input_tensor + hidden_states) / self.output_scale_factor
+[rank0]: torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 512.00 MiB. GPU
+Steps:   0%|                         | 0/500 [00:03<?, ?it/s, loss=0.0217, lr=1]

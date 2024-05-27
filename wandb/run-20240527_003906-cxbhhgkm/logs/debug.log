@@ -1,0 +1,29 @@
+2024-05-27 00:39:06,616 INFO    MainThread:114103 [wandb_setup.py:_flush():76] Current SDK version is 0.17.0
+2024-05-27 00:39:06,616 INFO    MainThread:114103 [wandb_setup.py:_flush():76] Configure stats pid to 114103
+2024-05-27 00:39:06,616 INFO    MainThread:114103 [wandb_setup.py:_flush():76] Loading settings from /home/emma/.config/wandb/settings
+2024-05-27 00:39:06,616 INFO    MainThread:114103 [wandb_setup.py:_flush():76] Loading settings from /home/emma/code/emotiscope/wandb/settings
+2024-05-27 00:39:06,616 WARNING MainThread:114103 [wandb_setup.py:_flush():76] Unknown environment variable: WANDB_SERVICE
+2024-05-27 00:39:06,616 INFO    MainThread:114103 [wandb_setup.py:_flush():76] Loading settings from environment variables: {}
+2024-05-27 00:39:06,616 INFO    MainThread:114103 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2024-05-27 00:39:06,616 INFO    MainThread:114103 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'train_dreambooth_lora_sdxl_advanced.py', 'program_abspath': '/home/emma/code/emotiscope/train_dreambooth_lora_sdxl_advanced.py', 'program': '/home/emma/code/emotiscope/train_dreambooth_lora_sdxl_advanced.py'}
+2024-05-27 00:39:06,616 INFO    MainThread:114103 [wandb_setup.py:_flush():76] Applying login settings: {}
+2024-05-27 00:39:06,616 INFO    MainThread:114103 [wandb_init.py:_log_setup():520] Logging user logs to /home/emma/code/emotiscope/wandb/run-20240527_003906-cxbhhgkm/logs/debug.log
+2024-05-27 00:39:06,617 INFO    MainThread:114103 [wandb_init.py:_log_setup():521] Logging internal logs to /home/emma/code/emotiscope/wandb/run-20240527_003906-cxbhhgkm/logs/debug-internal.log
+2024-05-27 00:39:06,617 INFO    MainThread:114103 [wandb_init.py:init():560] calling init triggers
+2024-05-27 00:39:06,617 INFO    MainThread:114103 [wandb_init.py:init():567] wandb.init called with sweep_config: {}
+config: {}
+2024-05-27 00:39:06,617 INFO    MainThread:114103 [wandb_init.py:init():610] starting backend
+2024-05-27 00:39:06,617 INFO    MainThread:114103 [wandb_init.py:init():614] setting up manager
+2024-05-27 00:39:06,619 INFO    MainThread:114103 [backend.py:_multiprocessing_setup():105] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2024-05-27 00:39:06,620 INFO    MainThread:114103 [wandb_init.py:init():622] backend started and connected
+2024-05-27 00:39:06,624 INFO    MainThread:114103 [wandb_init.py:init():711] updated telemetry
+2024-05-27 00:39:06,630 INFO    MainThread:114103 [wandb_init.py:init():744] communicating run to backend with 90.0 second timeout
+2024-05-27 00:39:06,856 INFO    MainThread:114103 [wandb_run.py:_on_init():2396] communicating current version
+2024-05-27 00:39:06,899 INFO    MainThread:114103 [wandb_run.py:_on_init():2405] got version response 
+2024-05-27 00:39:06,900 INFO    MainThread:114103 [wandb_init.py:init():795] starting run threads in backend
+2024-05-27 00:39:07,098 INFO    MainThread:114103 [wandb_run.py:_console_start():2374] atexit reg
+2024-05-27 00:39:07,098 INFO    MainThread:114103 [wandb_run.py:_redirect():2229] redirect: wrap_raw
+2024-05-27 00:39:07,098 INFO    MainThread:114103 [wandb_run.py:_redirect():2294] Wrapping output streams.
+2024-05-27 00:39:07,098 INFO    MainThread:114103 [wandb_run.py:_redirect():2319] Redirects installed.
+2024-05-27 00:39:07,101 INFO    MainThread:114103 [wandb_init.py:init():838] run started, returning control to user process
+2024-05-27 00:39:07,103 INFO    MainThread:114103 [wandb_run.py:_config_callback():1376] config_cb None None {'pretrained_model_name_or_path': 'stabilityai/stable-diffusion-xl-base-1.0', 'pretrained_vae_model_name_or_path': 'madebyollin/sdxl-vae-fp16-fix', 'revision': None, 'variant': None, 'dataset_name': 'faces', 'dataset_config_name': None, 'instance_data_dir': None, 'cache_dir': None, 'image_column': 'image', 'caption_column': 'prompt', 'repeats': 1, 'class_data_dir': None, 'instance_prompt': 'emoticon in the style of <s0><s1>', 'token_abstraction': 'TOK', 'num_new_tokens_per_abstraction': 2, 'class_prompt': None, 'validation_prompt': 'a <s0><s1> icon of an astronaut riding a horse, in the style of <s0><s1>', 'num_validation_images': 4, 'validation_epochs': 50, 'do_edm_style_training': False, 'with_prior_preservation': False, 'prior_loss_weight': 1.0, 'num_class_images': 100, 'output_dir': 'emoticon-sdxl-lora', 'seed': 0, 'resolution': 1024, 'center_crop': False, 'random_flip': False, 'train_text_encoder': False, 'train_batch_size': 1, 'sample_batch_size': 4, 'num_train_epochs': 100, 'max_train_steps': 500, 'checkpointing_steps': 2000, 'checkpoints_total_limit': None, 'resume_from_checkpoint': None, 'gradient_accumulation_steps': 3, 'gradient_checkpointing': True, 'learning_rate': 0.0001, 'text_encoder_lr': 1.0, 'scale_lr': False, 'lr_scheduler': 'constant', 'snr_gamma': 5.0, 'lr_warmup_steps': 0, 'lr_num_cycles': 1, 'lr_power': 1.0, 'dataloader_num_workers': 0, 'train_text_encoder_ti': True, 'train_text_encoder_ti_frac': 0.5, 'train_text_encoder_frac': 1.0, 'optimizer': 'adamW', 'use_8bit_adam': True, 'adam_beta1': 0.9, 'adam_beta2': 0.99, 'prodigy_beta3': None, 'prodigy_decouple': True, 'adam_weight_decay': 0.0001, 'adam_weight_decay_text_encoder': None, 'adam_epsilon': 1e-08, 'prodigy_use_bias_correction': True, 'prodigy_safeguard_warmup': True, 'max_grad_norm': 1.0, 'push_to_hub': True, 'hub_token': None, 'hub_model_id': None, 'logging_dir': 'logs', 'allow_tf32': False, 'report_to': 'wandb', 'mixed_precision': 'fp16', 'prior_generation_precision': None, 'local_rank': 0, 'enable_xformers_memory_efficient_attention': False, 'noise_offset': 0, 'rank': 8, 'use_dora': False, 'lora_unet_blocks': None, 'use_blora': False, 'cache_latents': False}
