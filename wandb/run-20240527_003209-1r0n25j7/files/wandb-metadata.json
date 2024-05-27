@@ -1,0 +1,181 @@
+{
+    "os": "Linux-5.15.0-107-generic-x86_64-with-glibc2.35",
+    "python": "3.10.12",
+    "heartbeatAt": "2024-05-27T07:32:09.425549",
+    "startedAt": "2024-05-27T07:32:09.046543",
+    "docker": null,
+    "cuda": null,
+    "args": [
+        "--pretrained_model_name_or_path=stabilityai/stable-diffusion-xl-base-1.0",
+        "--pretrained_vae_model_name_or_path=madebyollin/sdxl-vae-fp16-fix",
+        "--dataset_name=./faces",
+        "--instance_prompt=emoticon in the style of TOK",
+        "--validation_prompt=a TOK icon of an astronaut riding a horse, in the style of TOK",
+        "--output_dir=emoticon-sdxl-lora",
+        "--caption_column=prompt",
+        "--mixed_precision=bf16",
+        "--resolution=1024",
+        "--train_batch_size=3",
+        "--repeats=1",
+        "--report_to=wandb",
+        "--gradient_accumulation_steps=1",
+        "--gradient_checkpointing",
+        "--learning_rate=1.0",
+        "--text_encoder_lr=1.0",
+        "--adam_beta2=0.99",
+        "--optimizer=prodigy",
+        "--train_text_encoder_ti",
+        "--train_text_encoder_ti_frac=0.5",
+        "--snr_gamma=5.0",
+        "--lr_scheduler=constant",
+        "--lr_warmup_steps=0",
+        "--rank=8",
+        "--max_train_steps=1000",
+        "--checkpointing_steps=2000",
+        "--seed=0",
+        "--push_to_hub"
+    ],
+    "state": "running",
+    "program": "/home/emma/code/emotiscope/train_dreambooth_lora_sdxl_advanced.py",
+    "codePathLocal": "train_dreambooth_lora_sdxl_advanced.py",
+    "codePath": "train_dreambooth_lora_sdxl_advanced.py",
+    "git": {
+        "remote": "git@github.com:nworb999/emotiscope.git",
+        "commit": "b90824a4ddd49aaa04d007aee48ba1388a17f875"
+    },
+    "email": "emma.nworb@gmail.com",
+    "root": "/home/emma/code/emotiscope",
+    "host": "imagination",
+    "username": "emma",
+    "executable": "/home/emma/code/emotiscope/moody-env/bin/python3",
+    "cpu_count": 10,
+    "cpu_count_logical": 20,
+    "cpu_freq": {
+        "current": 3607.18365,
+        "min": 1200.0,
+        "max": 4560.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 3700.0,
+            "min": 1200.0,
+            "max": 4500.0
+        },
+        {
+            "current": 1200.051,
+            "min": 1200.0,
+            "max": 4500.0
+        },
+        {
+            "current": 3700.0,
+            "min": 1200.0,
+            "max": 4500.0
+        },
+        {
+            "current": 4343.622,
+            "min": 1200.0,
+            "max": 4700.0
+        },
+        {
+            "current": 3700.0,
+            "min": 1200.0,
+            "max": 4500.0
+        },
+        {
+            "current": 3700.0,
+            "min": 1200.0,
+            "max": 4500.0
+        },
+        {
+            "current": 3700.0,
+            "min": 1200.0,
+            "max": 4500.0
+        },
+        {
+            "current": 3700.0,
+            "min": 1200.0,
+            "max": 4600.0
+        },
+        {
+            "current": 3700.0,
+            "min": 1200.0,
+            "max": 4600.0
+        },
+        {
+            "current": 3700.0,
+            "min": 1200.0,
+            "max": 4700.0
+        },
+        {
+            "current": 3700.0,
+            "min": 1200.0,
+            "max": 4500.0
+        },
+        {
+            "current": 3700.0,
+            "min": 1200.0,
+            "max": 4500.0
+        },
+        {
+            "current": 3700.0,
+            "min": 1200.0,
+            "max": 4500.0
+        },
+        {
+            "current": 3700.0,
+            "min": 1200.0,
+            "max": 4700.0
+        },
+        {
+            "current": 3700.0,
+            "min": 1200.0,
+            "max": 4500.0
+        },
+        {
+            "current": 3700.0,
+            "min": 1200.0,
+            "max": 4500.0
+        },
+        {
+            "current": 3700.0,
+            "min": 1200.0,
+            "max": 4500.0
+        },
+        {
+            "current": 3700.0,
+            "min": 1200.0,
+            "max": 4600.0
+        },
+        {
+            "current": 3700.0,
+            "min": 1200.0,
+            "max": 4600.0
+        },
+        {
+            "current": 3700.0,
+            "min": 1200.0,
+            "max": 4700.0
+        }
+    ],
+    "disk": {
+        "/": {
+            "total": 1632.1216583251953,
+            "used": 839.2734603881836
+        }
+    },
+    "gpu": "NVIDIA GeForce RTX 3090",
+    "gpu_count": 2,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA GeForce RTX 3090",
+            "memory_total": 25769803776
+        },
+        {
+            "name": "NVIDIA GeForce RTX 3090",
+            "memory_total": 25769803776
+        }
+    ],
+    "memory": {
+        "total": 62.48155212402344
+    }
+}
