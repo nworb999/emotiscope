@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 import torch
 from diffusers import DiffusionPipeline, AutoencoderKL
 import requests
+from PIL import Image
 import json
 
 torch.cuda.empty_cache()
@@ -56,7 +57,9 @@ def generate_image(prompt):
 
     torch.cuda.empty_cache()
     image = pipe(prompt=prompt, num_inference_steps=25).images[0]
-    image.save(f"./outputs/{prompt[:50].replace(' ', '_')}.png")
+    low_res_image = image.resize((256, 256), Image.LANCZOS)
+
+    low_res_image.save(f"./outputs/{prompt[:50].replace(' ', '_')}.png")
 
 def main():
     while True:
