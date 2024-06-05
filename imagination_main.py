@@ -60,7 +60,7 @@ def generate_image(prompt):
 def main():
     while True:
         past_prompts = PROMPTS[-10:] if len(PROMPTS) >= 10 else PROMPTS
-        new_prompt = get_response(f"Please provide a new image prompt.  Please do not use any of the following existing prompts: {", ".join(past_prompts)}")
+        new_prompt = get_response(f"Please provide a new image prompt.  Please do not use any of the following existing prompts: {', '.join(past_prompts)}")
 
         if new_prompt:
             PROMPTS.append(new_prompt)
@@ -68,6 +68,23 @@ def main():
         else:
             print("Failed to get a new prompt. Trying again...")
 
-            
+
 if __name__ == "__main__":
-    main()
+    prompt = "Galactic cityscape"
+    torch.cuda.empty_cache()
+    vae = AutoencoderKL.from_pretrained("madebyollin/sdxl-vae-fp16-fix", torch_dtype=torch.float16)
+    pipe = DiffusionPipeline.from_pretrained(
+        "stabilityai/stable-diffusion-xl-base-1.0",
+        vae=vae,
+        torch_dtype=torch.float16,
+        variant="fp16",
+        use_safetensors=True
+    )
+
+    pipe.load_lora_weights('nworb-ucsb/face_LoRA',)
+    _ = pipe.to("cuda")
+
+    torch.cuda.empty_cache()
+    image = pipe(prompt=prompt, num_inference_steps=25).images[0]
+    image.save(f"./outputs/{prompt[:50].replace(' ', '_')}.png")
+    # main()
