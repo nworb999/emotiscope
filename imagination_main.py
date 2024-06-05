@@ -77,8 +77,8 @@ def generate_image(prompt):
     torch.cuda.empty_cache()
     image = pipe(prompt=prompt[:50], num_inference_steps=25).images[0]
     low_res_image = image.resize((256, 256), Image.LANCZOS)
+    low_res_image.save(f"./outputs/{prompt[:50].replace(' ', '_')}.png")
 
-    low_res_image.save(f"./outputs/{prompt[:50].replace(' ', '_').replace('_"', '').replace('"')}.png")
 
 def main():
     while True:
