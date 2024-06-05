@@ -6,6 +6,7 @@ import requests
 import json
 
 torch.cuda.empty_cache()
+print(torch.cuda.is_available())
 
 load_dotenv()
 
@@ -55,14 +56,14 @@ def generate_image(prompt):
     _ = pipe.to("cuda")
 
     torch.cuda.empty_cache()
-    image = pipe(prompt=prompt, num_inference_steps=25).images[0]
+    image = pipe(prompt=prompt, num_inference_steps=20).images[0]
     image.save(f"./outputs/{prompt[:50].replace(' ', '_')}.png")
 
 def main():
     while True:
         past_prompts = PROMPTS[-10:] if len(PROMPTS) >= 10 else PROMPTS
-        new_prompt = get_response(f"Please provide a new image prompt.  Please do not use any of the following existing prompts: {', '.join(past_prompts)}")
-
+        new_prompt = get_response(f"Please provide a new image prompt using ONLY 2-3 words.  Please do not use any of the following existing prompts: {', '.join(past_prompts)}")
+        print(new_prompt)
         if new_prompt:
             PROMPTS.append(new_prompt)
             generate_image(new_prompt)
