@@ -1,9 +1,12 @@
 import os
 from dotenv import load_dotenv
+import openai
 import torch
 from diffusers import DiffusionPipeline, AutoencoderKL
 import requests
+from PIL import Image
 import json
+import time
 
 torch.cuda.empty_cache()
 print(torch.cuda.is_available())
@@ -11,11 +14,13 @@ print(torch.cuda.is_available())
 load_dotenv()
 
 hugging_face_token = os.getenv('HUGGING_FACE_TOKEN')
+client = openai.OpenAI(api_key=os.environ.get("OPENAI_KEY"))
+
 
 PROMPTS = []
 
 
-def get_response(prompt, past_responses=None):
+def get_response_ollama(prompt, past_responses=None):
     url = "http://localhost:11434/api/chat"
     if past_responses is None:
         history = []
@@ -40,6 +45,22 @@ def get_response(prompt, past_responses=None):
         print(response.json())
         print(f"Request failed with status code {response.status_code}")
         return None
+    
+def get_response(prompt, past_responses=None):
+    time.sleep(4)
+    if past_responses is None:
+        past_responses = []
+
+    messages = [{"role": "user", "content": message} for message in past_responses]
+    messages.append({"role": "user", "content": prompt})
+
+    response = client.chat.completions.create(
+        model="gpt-4o-2024-05-13",  # Ensure you specify the correct model, e.g., gpt-3.5-turbo if needed
+        messages=messages,
+    )
+
+    return response.choices[0].message.content
+
 
 def generate_image(prompt):
     torch.cuda.empty_cache()
@@ -56,6 +77,7 @@ def generate_image(prompt):
     _ = pipe.to("cuda")
 
     torch.cuda.empty_cache()
+<<<<<<< HEAD
     image = pipe(prompt=prompt, num_inference_steps=20).images[0]
     image.save(f"./outputs/{prompt[:50].replace(' ', '_')}.png")
 
@@ -64,6 +86,18 @@ def main():
         past_prompts = PROMPTS[-10:] if len(PROMPTS) >= 10 else PROMPTS
         new_prompt = get_response(f"Please provide a new image prompt using ONLY 2-3 words.  Please do not use any of the following existing prompts: {', '.join(past_prompts)}")
         print(new_prompt)
+=======
+    image = pipe(prompt=prompt, num_inference_steps=25).images[0]
+    low_res_image = image.resize((256, 256), Image.LANCZOS)
+
+    low_res_image.save(f"./outputs/{prompt[:50].replace(' ', '_')}.png")
+
+def main():
+    while True:
+        past_prompts = PROMPTS[-5:] if len(PROMPTS) >= 10 else PROMPTS
+        new_prompt = get_response(f"Please provide a new image prompt involving a face or facial expression.  Please do not use any of the following existing prompts: {', '.join(past_prompts)}")
+
+>>>>>>> 6d247214c069038f02c70cdb9afc7d0985a1c1a6
         if new_prompt:
             PROMPTS.append(new_prompt)
             generate_image(new_prompt)
