@@ -1,6 +1,7 @@
-.moody-env/
+emo-env/
 .DS_Store
 .ipynb_checkpoints/
 __pycache__/
 **/__pycache__/
 **/.ipynb_checkpoints/
+.env
