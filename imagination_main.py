@@ -60,8 +60,8 @@ def generate_image(prompt):
 
 def main():
     while True:
-        past_prompts = PROMPTS[-10:] if len(PROMPTS) >= 10 else PROMPTS
-        new_prompt = get_response(f"Please provide a new image prompt.  Please do not use any of the following existing prompts: {', '.join(past_prompts)}")
+        past_prompts = PROMPTS[-5:] if len(PROMPTS) >= 10 else PROMPTS
+        new_prompt = get_response(f"Please provide a new image prompt involving a face or facial expression.  Please do not use any of the following existing prompts: {', '.join(past_prompts)}")
 
         if new_prompt:
             PROMPTS.append(new_prompt)
