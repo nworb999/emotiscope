@@ -18,6 +18,17 @@ client = openai.OpenAI(api_key=os.environ.get("OPENAI_KEY"))
 
 PROMPTS = []
 
+vae = AutoencoderKL.from_pretrained("madebyollin/sdxl-vae-fp16-fix", torch_dtype=torch.float16)
+pipe = DiffusionPipeline.from_pretrained(
+    "stabilityai/stable-diffusion-xl-base-1.0",
+    vae=vae,
+    torch_dtype=torch.float16,
+    variant="fp16",
+    use_safetensors=True
+)
+pipe.load_lora_weights('nworb-ucsb/face_LoRA',)
+pipe = pipe.to("cuda")
+
 
 def get_response_ollama(prompt, past_responses=None):
     url = "http://localhost:11434/api/chat"
@@ -63,20 +74,7 @@ def get_response(prompt, past_responses=None):
 
 def generate_image(prompt):
     torch.cuda.empty_cache()
-    vae = AutoencoderKL.from_pretrained("madebyollin/sdxl-vae-fp16-fix", torch_dtype=torch.float16)
-    pipe = DiffusionPipeline.from_pretrained(
-        "stabilityai/stable-diffusion-xl-base-1.0",
-        vae=vae,
-        torch_dtype=torch.float16,
-        variant="fp16",
-        use_safetensors=True
-    )
-
-    pipe.load_lora_weights('nworb-ucsb/face_LoRA',)
-    _ = pipe.to("cuda")
-
-    torch.cuda.empty_cache()
-    image = pipe(prompt=prompt, num_inference_steps=25).images[0]
+    image = pipe(prompt=prompt[:50], num_inference_steps=25).images[0]
     low_res_image = image.resize((256, 256), Image.LANCZOS)
 
     low_res_image.save(f"./outputs/{prompt[:50].replace(' ', '_')}.png")
