@@ -1,21 +1,25 @@
 import os
 from dotenv import load_dotenv
+import openai
 import torch
 from diffusers import DiffusionPipeline, AutoencoderKL
 import requests
 from PIL import Image
 import json
+import time
 
 torch.cuda.empty_cache()
 
 load_dotenv()
 
 hugging_face_token = os.getenv('HUGGING_FACE_TOKEN')
+client = openai.OpenAI(api_key=os.environ.get("OPENAI_KEY"))
+
 
 PROMPTS = []
 
 
-def get_response(prompt, past_responses=None):
+def get_response_ollama(prompt, past_responses=None):
     url = "http://localhost:11434/api/chat"
     if past_responses is None:
         history = []
@@ -40,6 +44,22 @@ def get_response(prompt, past_responses=None):
         print(response.json())
         print(f"Request failed with status code {response.status_code}")
         return None
+    
+def get_response(prompt, past_responses=None):
+    time.sleep(4)
+    if past_responses is None:
+        past_responses = []
+
+    messages = [{"role": "user", "content": message} for message in past_responses]
+    messages.append({"role": "user", "content": prompt})
+
+    response = client.chat.completions.create(
+        model="gpt-4o-2024-05-13",  # Ensure you specify the correct model, e.g., gpt-3.5-turbo if needed
+        messages=messages,
+    )
+
+    return response.choices[0].message.content
+
 
 def generate_image(prompt):
     torch.cuda.empty_cache()
