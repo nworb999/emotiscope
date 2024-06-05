@@ -71,7 +71,6 @@ def main():
 
 
 if __name__ == "__main__":
-<<<<<<< HEAD
     prompt = "Galactic cityscape"
     torch.cuda.empty_cache()
     vae = AutoencoderKL.from_pretrained("madebyollin/sdxl-vae-fp16-fix", torch_dtype=torch.float16)
@@ -90,6 +89,3 @@ if __name__ == "__main__":
     image = pipe(prompt=prompt, num_inference_steps=25).images[0]
     image.save(f"./outputs/{prompt[:50].replace(' ', '_')}.png")
     # main()
-=======
-    main()
->>>>>>> e899f55c0b8f792358242b249386ad7a816b26b7
