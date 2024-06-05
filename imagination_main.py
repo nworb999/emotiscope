@@ -66,7 +66,7 @@ def get_response(prompt, past_responses=None):
     messages.append({"role": "user", "content": prompt})
 
     response = client.chat.completions.create(
-        model="gpt-4o-2024-05-13",  # Ensure you specify the correct model, e.g., gpt-3.5-turbo if needed
+        model="gpt-3.5-turbo",  # Ensure you specify the correct model, e.g., gpt-3.5-turbo if needed
         messages=messages,
     )
 
@@ -78,7 +78,7 @@ def generate_image(prompt):
     image = pipe(prompt=prompt[:50], num_inference_steps=25).images[0]
     low_res_image = image.resize((256, 256), Image.LANCZOS)
 
-    low_res_image.save(f"./outputs/{prompt[:50].replace(' ', '_')}.png")
+    low_res_image.save(f"./outputs/{prompt[:50].replace(' ', '_').replace('_"', '').replace('"')}.png")
 
 def main():
     while True:
