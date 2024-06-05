@@ -55,4 +55,19 @@ def generate_image(prompt):
 
     torch.cuda.empty_cache()
     image = pipe(prompt=prompt, num_inference_steps=25).images[0]
-    image.save("./outputs/output_image.png")
+    image.save(f"./outputs/{prompt[:50].replace(' ', '_')}.png")
+
+def main():
+    while True:
+        past_prompts = PROMPTS[-10:] if len(PROMPTS) >= 10 else PROMPTS
+        new_prompt = get_response(f"Please provide a new image prompt.  Please do not use any of the following existing prompts: {", ".join(past_prompts)}")
+
+        if new_prompt:
+            PROMPTS.append(new_prompt)
+            generate_image(new_prompt)
+        else:
+            print("Failed to get a new prompt. Trying again...")
+
+            
+if __name__ == "__main__":
+    main()
