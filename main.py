@@ -24,4 +24,4 @@ prompt = "happy" # @param
 
 torch.cuda.empty_cache()
 image = pipe(prompt=prompt, num_inference_steps=25).images[0]
-image.save("output_image.png")
+image.save("./outputs/output_image.png")
