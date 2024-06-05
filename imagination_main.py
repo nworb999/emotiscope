@@ -77,16 +77,6 @@ def generate_image(prompt):
     _ = pipe.to("cuda")
 
     torch.cuda.empty_cache()
-<<<<<<< HEAD
-    image = pipe(prompt=prompt, num_inference_steps=20).images[0]
-    image.save(f"./outputs/{prompt[:50].replace(' ', '_')}.png")
-
-def main():
-    while True:
-        past_prompts = PROMPTS[-10:] if len(PROMPTS) >= 10 else PROMPTS
-        new_prompt = get_response(f"Please provide a new image prompt using ONLY 2-3 words.  Please do not use any of the following existing prompts: {', '.join(past_prompts)}")
-        print(new_prompt)
-=======
     image = pipe(prompt=prompt, num_inference_steps=25).images[0]
     low_res_image = image.resize((256, 256), Image.LANCZOS)
 
@@ -97,7 +87,6 @@ def main():
         past_prompts = PROMPTS[-5:] if len(PROMPTS) >= 10 else PROMPTS
         new_prompt = get_response(f"Please provide a new image prompt involving a face or facial expression.  Please do not use any of the following existing prompts: {', '.join(past_prompts)}")
 
->>>>>>> 6d247214c069038f02c70cdb9afc7d0985a1c1a6
         if new_prompt:
             PROMPTS.append(new_prompt)
             generate_image(new_prompt)
