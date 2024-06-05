@@ -25,7 +25,7 @@ def get_response(prompt, past_responses=None):
     history.append({"role": "user", "content": prompt})
 
     data = {
-        "model": "llama3:70b",
+        "model": "mixtral:latest",
         "messages": history,
         "stream": False,
     }
@@ -71,21 +71,4 @@ def main():
 
 
 if __name__ == "__main__":
-    prompt = "Galactic cityscape"
-    torch.cuda.empty_cache()
-    vae = AutoencoderKL.from_pretrained("madebyollin/sdxl-vae-fp16-fix", torch_dtype=torch.float16)
-    pipe = DiffusionPipeline.from_pretrained(
-        "stabilityai/stable-diffusion-xl-base-1.0",
-        vae=vae,
-        torch_dtype=torch.float16,
-        variant="fp16",
-        use_safetensors=True
-    )
-
-    pipe.load_lora_weights('nworb-ucsb/face_LoRA',)
-    _ = pipe.to("cuda")
-
-    torch.cuda.empty_cache()
-    image = pipe(prompt=prompt, num_inference_steps=25).images[0]
-    image.save(f"./outputs/{prompt[:50].replace(' ', '_')}.png")
-    # main()
+    main()
