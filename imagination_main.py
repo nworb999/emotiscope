@@ -9,6 +9,7 @@ import json
 import time
 
 torch.cuda.empty_cache()
+print(torch.cuda.is_available())
 
 load_dotenv()
 
